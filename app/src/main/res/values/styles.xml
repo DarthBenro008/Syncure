@@ -9,6 +9,7 @@
         <item name="android:windowBackground">@color/primaryBackground</item>
         <item name="android:fontFamily">@font/proxima</item>
         <item name="android:textColor">@color/white</item>
+        <item name="otpViewStyle">@style/OtpWidget.OtpView</item>
     </style>
 
 </resources>
