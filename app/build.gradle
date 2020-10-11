@@ -23,6 +23,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 dependencies {
@@ -56,6 +63,9 @@ dependencies {
 
     //OTP View
     implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.1.2'
+
+    //Kodein
+    implementation 'org.kodein.di:kodein-di:7.1.0'
 
 
 
