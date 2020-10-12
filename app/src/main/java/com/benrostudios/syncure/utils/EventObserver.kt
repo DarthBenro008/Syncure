@@ -1,4 +1,4 @@
-package com.benrostudios.syncure.ui.base
+package com.benrostudios.syncure.utils
 
 import androidx.lifecycle.Observer
 

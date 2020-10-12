@@ -5,7 +5,6 @@ import com.benrostudios.syncure.data.repositories.BaseRepository
 
 class AuthRepoImpl : AuthRepo, BaseRepository() {
 
-
     override suspend fun register(username: String, password: String): LiveData<Boolean> {
         TODO("Not yet implemented")
     }
