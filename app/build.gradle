@@ -76,6 +76,14 @@ dependencies {
     //Event Bus
     implementation 'org.greenrobot:eventbus:3.2.0'
 
+    //Wave Loader
+    implementation 'me.itangqi.waveloadingview:library:0.3.5'
+
+    //Biometric Authentication
+    implementation 'androidx.biometric:biometric:1.0.1'
+    implementation 'androidx.security:security-crypto:1.1.0-alpha02'
+
+
 
 
 }

@@ -2,14 +2,13 @@ package com.benrostudios.syncure.ui.auth.signin
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.benrostudios.syncure.MainActivity
+import com.benrostudios.syncure.ui.home.Home
 import com.benrostudios.syncure.R
 import com.benrostudios.syncure.ui.auth.AuthViewModel
 import com.benrostudios.syncure.ui.base.ScopedFragment
@@ -76,7 +75,7 @@ class Signinotp : ScopedFragment() {
         viewModel.loginTwoFactor(totp, username).observe(viewLifecycleOwner, Observer {
             if (it.status == SUCCESS) {
                 sharedPrefManager.jwtStored = it.data.token.toString()
-                startActivity(Intent(requireActivity(), MainActivity::class.java))
+                startActivity(Intent(requireActivity(), Home::class.java))
             } else {
                 stopLoading()
                 signin_otp_verify.errorSnackBar(it.message)

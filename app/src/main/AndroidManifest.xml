@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.home.password.PasswordActivity"></activity>
         <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.auth.Auth" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".ui.home.Home" />
     </application>
 
 </manifest>

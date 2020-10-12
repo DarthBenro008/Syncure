@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import com.benrostudios.syncure.MainActivity
+import com.benrostudios.syncure.ui.home.Home
 import com.benrostudios.syncure.R
 import com.benrostudios.syncure.ui.auth.AuthViewModel
 import com.benrostudios.syncure.ui.base.ScopedFragment
@@ -71,7 +71,7 @@ class RegisterOtp : ScopedFragment() {
                 if (it != null) {
                     if (it.status == SUCCESS) {
                         sharedPrefManager.jwtStored = it.data.token.toString()
-                        startActivity(Intent(requireActivity(), MainActivity::class.java))
+                        startActivity(Intent(requireActivity(), Home::class.java))
                         requireActivity().finish()
                     } else {
                         stopLoading()

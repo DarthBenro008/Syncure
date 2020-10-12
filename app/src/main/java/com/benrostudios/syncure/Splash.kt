@@ -7,6 +7,7 @@ import android.os.Handler
 import android.view.Window
 import android.view.WindowManager
 import com.benrostudios.syncure.ui.auth.Auth
+import com.benrostudios.syncure.ui.home.Home
 import com.benrostudios.syncure.utils.SharedPrefManager
 import org.koin.android.ext.android.inject
 
@@ -35,7 +36,7 @@ class Splash : AppCompatActivity() {
             startActivity(Intent(this, Auth::class.java))
             this.finish()
         } else {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, Home::class.java))
             this.finish()
         }
     }
