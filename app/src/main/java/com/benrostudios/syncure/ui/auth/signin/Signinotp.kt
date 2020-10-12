@@ -76,6 +76,7 @@ class Signinotp : ScopedFragment() {
             if (it.status == SUCCESS) {
                 sharedPrefManager.jwtStored = it.data.token.toString()
                 startActivity(Intent(requireActivity(), Home::class.java))
+                requireActivity().finish()
             } else {
                 stopLoading()
                 signin_otp_verify.errorSnackBar(it.message)

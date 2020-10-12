@@ -5,4 +5,5 @@ object Constants {
     const val SUCCESS= "success"
     const val FAILURE ="failure"
     const val USERNAME ="username"
+    const val PASSWORD = "password"
 }

@@ -60,7 +60,6 @@ class Home : AppCompatActivity() {
                         .show()
                     val intent = Intent(baseContext, PasswordActivity::class.java)
                     startActivity(intent)
-                    finish()
                 }
 
                 override fun onAuthenticationFailed() {

@@ -24,7 +24,8 @@
         tools:layout="@layout/fragment_sign_in" >
         <action
             android:id="@+id/action_signIn_to_signinotp"
-            app:destination="@id/signinotp" />
+            app:destination="@id/signinotp"
+            app:popUpTo="@id/signIn" />
     </fragment>
     <fragment
         android:id="@+id/signUp"
@@ -33,17 +34,14 @@
         tools:layout="@layout/fragment_sign_up" >
         <action
             android:id="@+id/action_signUp_to_registerOtp"
-            app:destination="@id/registerOtp" />
+            app:destination="@id/registerOtp"
+            app:popUpTo="@id/signUp" />
     </fragment>
     <fragment
         android:id="@+id/registerOtp"
         android:name="com.benrostudios.syncure.ui.auth.signup.RegisterOtp"
         android:label="fragment_register_otp"
-        tools:layout="@layout/fragment_register_otp" >
-        <action
-            android:id="@+id/action_registerOtp_to_welcome"
-            app:destination="@id/welcome" />
-    </fragment>
+        tools:layout="@layout/fragment_register_otp" />
     <fragment
         android:id="@+id/signinotp"
         android:name="com.benrostudios.syncure.ui.auth.signin.Signinotp"
