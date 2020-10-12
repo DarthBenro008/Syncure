@@ -1,6 +1,7 @@
 package com.benrostudios.syncure.data.repositories.auth
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.benrostudios.syncure.data.network.AuthService
 import com.benrostudios.syncure.data.network.response.GenericResponse
@@ -14,47 +15,65 @@ class AuthRepoImpl(
     private val authService: AuthService
 ) : AuthRepo, BaseRepository() {
 
-    override suspend fun register(username: String, email: String, name: String?): LiveData<GenericResponse> {
-        return withContext(Dispatchers.IO){
-            return@withContext liveData<GenericResponse> {
+    val _authResponse = MutableLiveData<GenericResponse>()
+    val _otpResponse = MutableLiveData<GenericResponse>()
+
+    override suspend fun register(
+        username: String,
+        email: String,
+        name: String?
+    ): LiveData<GenericResponse> {
+        return withContext(Dispatchers.IO) {
+            _authResponse.postValue(
                 safeApiCall(
-                    call = {authService.userRegister(username, email, name)},
+                    call = { authService.userRegister(username, email, name) },
                     error = "Unable to register"
                 )
-            }
+            )
+            return@withContext _authResponse
         }
     }
 
     override suspend fun signIn(username: String, password: String): LiveData<GenericResponse> {
         return withContext(Dispatchers.IO) {
-            return@withContext liveData<GenericResponse> {
+            _authResponse.postValue(
                 safeApiCall(
                     call = { authService.userLogin(username, password) },
                     error = "Unable to register"
                 )
-            }
+            )
+            return@withContext _authResponse
         }
     }
 
-    override suspend fun verifyRegisterOtp(totp: String, password: String, username: String): LiveData<GenericResponse> {
-        return withContext(Dispatchers.IO){
-            return@withContext liveData<GenericResponse> {
+    override suspend fun verifyRegisterOtp(
+        totp: String,
+        password: String,
+        username: String
+    ): LiveData<GenericResponse> {
+        return withContext(Dispatchers.IO) {
+            _otpResponse.postValue(
                 safeApiCall(
-                    call = {authService.twoFactorRegister(username, totp, password)},
+                    call = { authService.twoFactorRegister(username, totp, password) },
                     error = "Unable to verify OTP"
                 )
-            }
+            )
+            return@withContext _otpResponse
         }
     }
 
-    override suspend fun verifySignInOtp(totp: String, username: String): LiveData<GenericResponse> {
-        return withContext(Dispatchers.IO){
-            return@withContext liveData<GenericResponse> {
+    override suspend fun verifySignInOtp(
+        totp: String,
+        username: String
+    ): LiveData<GenericResponse> {
+        return withContext(Dispatchers.IO) {
+            _otpResponse.postValue(
                 safeApiCall(
-                    call = {authService.twoFactorLogin(username, totp)},
+                    call = { authService.twoFactorLogin(username, totp) },
                     error = "Unable to verify OTP"
                 )
-            }
+            )
+            return@withContext _otpResponse
         }
     }
 

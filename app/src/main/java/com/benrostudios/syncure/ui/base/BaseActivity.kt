@@ -19,9 +19,6 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val client = OkHttpClient.Builder()
-            .addInterceptor(ChuckInterceptor(this))
-            .build()
         networkManager()
         val cm: ConnectivityManager =
             getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
