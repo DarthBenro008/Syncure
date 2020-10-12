@@ -7,4 +7,6 @@
     <color name="secondaryBlue">#00ADB5</color>
     <color name="secondaryGrey">#393E46</color>
     <color name="white">#FFF</color>
+    <color name="error_red">#d32f2f</color>
+    <color name="success_green">#4caf50</color>
 </resources>

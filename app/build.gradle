@@ -67,6 +67,10 @@ dependencies {
     //Kodein
     implementation 'org.kodein.di:kodein-di:7.1.0'
 
+    //Chuck
+    debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
+    releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
+
 
 
 }
