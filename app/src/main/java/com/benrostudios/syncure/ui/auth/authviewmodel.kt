@@ -11,4 +11,17 @@ class AuthViewModel(private val authRepo: AuthRepo) : ViewModel() {
         return authRepo.signIn(username, password)
     }
 
+    suspend fun register(username: String, name: String, email: String): LiveData<GenericResponse>{
+        return authRepo.register(username, email, name)
+    }
+
+    suspend fun loginTwoFactor(totp: String, username: String): LiveData<GenericResponse>{
+        return authRepo.verifySignInOtp(totp, username)
+    }
+
+    suspend fun registerTwoFactor(totp: String, password: String, username: String): LiveData<GenericResponse>{
+        return authRepo.verifyRegisterOtp(totp, password, username)
+    }
+
+
 }

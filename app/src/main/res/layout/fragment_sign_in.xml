@@ -42,16 +42,16 @@
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/signin_username"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
+            android:background="@drawable/input_text_bg"
+            android:inputType="textPersonName"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:textColor="@color/white"
-            android:background="@drawable/input_text_bg"
-            android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView7"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
@@ -62,11 +62,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="Password"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+            app:layout_constraintStart_toStartOf="@+id/signin_username"
+            app:layout_constraintTop_toBottomOf="@+id/signin_username" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/signin_password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -85,15 +85,25 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
 
+        <ProgressBar
+            android:visibility="invisible"
+            android:id="@+id/signin_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/signin_continue"
+            app:layout_constraintEnd_toEndOf="@+id/signin_continue"
+            app:layout_constraintStart_toStartOf="@+id/signin_continue"
+            app:layout_constraintTop_toTopOf="@+id/signin_continue" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/signin_continue"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
@@ -105,6 +115,10 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             app:backgroundTint="@color/secondaryBlue"
-            app:cornerRadius="8dp" />
-    </LinearLayout>
+            app:cornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

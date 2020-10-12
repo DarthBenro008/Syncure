@@ -2,7 +2,9 @@ package com.benrostudios.syncure.data.repositories
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.benrostudios.syncure.data.network.response.NetworkEventFailure
 import com.benrostudios.syncure.data.network.response.NetworkResult
+import org.greenrobot.eventbus.EventBus
 import retrofit2.Response
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -18,7 +20,11 @@ open class BaseRepository {
         when (result) {
             is NetworkResult.Success ->
                 output = result.output
-            is NetworkResult.Error -> _networkErrorResolution.postValue(result.exception)
+            is NetworkResult.Error -> {
+                Log.d("trugger","hello")
+                //_networkErrorResolution.postValue(result.exception)
+                EventBus.getDefault().post(NetworkEventFailure(result.exception))
+            }
         }
         return output
     }

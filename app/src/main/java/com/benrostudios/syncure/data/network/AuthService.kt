@@ -1,13 +1,15 @@
 package com.benrostudios.syncure.data.network
 
 
-import androidx.lifecycle.LiveData
 import com.benrostudios.syncure.data.network.response.GenericResponse
 import com.benrostudios.syncure.utils.Constants
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
+
 
 interface AuthService {
 
@@ -35,7 +37,7 @@ interface AuthService {
     ): Response<GenericResponse>
 
     @FormUrlEncoded
-    @POST("verify/{username}}")
+    @POST("verify/{username}")
     suspend fun twoFactorLogin(
         @Path(value = "username", encoded = true) username: String,
         @Field("totp") totp: String
@@ -56,9 +58,14 @@ interface AuthService {
 
     companion object {
         operator fun invoke(): AuthService {
+            val logging = HttpLoggingInterceptor()
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+            val httpClient = OkHttpClient.Builder()
+            httpClient.addInterceptor(logging)
             return Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient.build())
                 .build()
                 .create(AuthService::class.java)
         }

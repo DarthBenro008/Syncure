@@ -21,7 +21,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
         <com.mukesh.OtpView
-            android:id="@+id/otp_view"
+            android:id="@+id/signin_otp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -37,7 +37,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+            app:layout_constraintTop_toBottomOf="@+id/textView12"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/textView3"
@@ -83,13 +84,14 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
+
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/signin_continue"
+            android:id="@+id/signin_otp_verify"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="32dp"
@@ -102,6 +104,23 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             app:backgroundTint="@color/secondaryBlue"
-            app:cornerRadius="8dp" />
-    </LinearLayout>
+            app:cornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:visibility="invisible"
+            android:id="@+id/signin_otp_progress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="17dp"
+            app:layout_constraintBottom_toBottomOf="@+id/signin_otp_verify"
+            app:layout_constraintEnd_toEndOf="@+id/signin_otp_verify"
+            app:layout_constraintStart_toStartOf="@+id/signin_otp_verify"
+            app:layout_constraintTop_toTopOf="@+id/signin_continue" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

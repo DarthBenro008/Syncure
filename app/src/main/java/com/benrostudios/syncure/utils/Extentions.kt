@@ -62,6 +62,10 @@ fun View.successSnackBar(msg: String) {
 }
 
 fun View.hide() {
+    this.visibility = View.INVISIBLE
+}
+
+fun View.gone(){
     this.visibility = View.GONE
 }
 
