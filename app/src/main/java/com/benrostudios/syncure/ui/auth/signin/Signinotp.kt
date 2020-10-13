@@ -75,6 +75,7 @@ class Signinotp : ScopedFragment() {
         viewModel.loginTwoFactor(totp, username).observe(viewLifecycleOwner, Observer {
             if (it.status == SUCCESS) {
                 sharedPrefManager.jwtStored = it.data.token.toString()
+                sharedPrefManager.username = username
                 startActivity(Intent(requireActivity(), Home::class.java))
                 requireActivity().finish()
             } else {

@@ -19,6 +19,10 @@ class SharedPrefManager(val context: Context) {
             getPrefs()?.edit()?.putString(PREFS_USERNAME, value)?.apply()
         }
 
+    fun nukeSharedPrefs() {
+        getPrefs()?.edit()?.clear()?.apply()
+    }
+
     companion object {
         const val PREFS_FILENAME = "com.benrostudios.syncure.prefs"
         const val PREFS_USERNAME = "username"

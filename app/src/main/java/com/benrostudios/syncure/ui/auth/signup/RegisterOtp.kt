@@ -71,6 +71,7 @@ class RegisterOtp : ScopedFragment() {
                 if (it != null) {
                     if (it.status == SUCCESS) {
                         sharedPrefManager.jwtStored = it.data.token.toString()
+                        sharedPrefManager.username = username!!
                         startActivity(Intent(requireActivity(), Home::class.java))
                         requireActivity().finish()
                     } else {

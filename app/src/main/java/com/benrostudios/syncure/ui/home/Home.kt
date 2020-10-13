@@ -9,8 +9,11 @@ import android.widget.Toast
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import com.benrostudios.syncure.R
+import com.benrostudios.syncure.ui.auth.Auth
 import com.benrostudios.syncure.ui.home.password.PasswordActivity
+import com.benrostudios.syncure.utils.SharedPrefManager
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.android.ext.android.inject
 import java.security.KeyStore
 import java.util.concurrent.Executor
 import javax.crypto.Cipher
@@ -23,12 +26,21 @@ class Home : AppCompatActivity() {
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
 
 
+    private val sharedPrefManager: SharedPrefManager by inject()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         password_encryption_container.setOnClickListener {
             biometricAuth()
+        }
+
+        logout_button.setOnClickListener {
+            sharedPrefManager.nukeSharedPrefs()
+            startActivity(Intent(this, Auth::class.java))
+            finish()
         }
     }
 
@@ -85,7 +97,8 @@ class Home : AppCompatActivity() {
 
     private fun generateSecretKey(keyGenParameterSpec: KeyGenParameterSpec) {
         val keyGenerator = KeyGenerator.getInstance(
-            KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore")
+            KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore"
+        )
         keyGenerator.init(keyGenParameterSpec)
         keyGenerator.generateKey()
     }
@@ -102,7 +115,8 @@ class Home : AppCompatActivity() {
     private fun getCipher(): Cipher {
         return Cipher.getInstance(
             KeyProperties.KEY_ALGORITHM_AES + "/"
-                + KeyProperties.BLOCK_MODE_CBC + "/"
-                + KeyProperties.ENCRYPTION_PADDING_PKCS7)
+                    + KeyProperties.BLOCK_MODE_CBC + "/"
+                    + KeyProperties.ENCRYPTION_PADDING_PKCS7
+        )
     }
 }
