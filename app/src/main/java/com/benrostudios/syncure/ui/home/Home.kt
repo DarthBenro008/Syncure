@@ -37,6 +37,8 @@ class Home : AppCompatActivity() {
             biometricAuth()
         }
 
+        dashboard_title.text = "Welcome ${sharedPrefManager.username}"
+
         logout_button.setOnClickListener {
             sharedPrefManager.nukeSharedPrefs()
             startActivity(Intent(this, Auth::class.java))
@@ -67,7 +69,7 @@ class Home : AppCompatActivity() {
                     super.onAuthenticationSucceeded(result)
                     Toast.makeText(
                         applicationContext,
-                        "Authentication succeeded!", Toast.LENGTH_SHORT
+                        "Welcome ${sharedPrefManager.username} !", Toast.LENGTH_SHORT
                     )
                         .show()
                     val intent = Intent(baseContext, PasswordActivity::class.java)

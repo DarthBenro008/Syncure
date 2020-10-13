@@ -1,5 +1,6 @@
 package com.benrostudios.syncure.ui.home.password
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -12,12 +13,10 @@ import kotlinx.coroutines.launch
 
 class PasswordViewModel(private val passwordRepo: PasswordRepo) : ViewModel() {
 
-    val passwordResponse = MutableLiveData<GenericResponse>()
+    val toggleBottomSheet = MutableLiveData<Boolean>()
 
-    suspend fun getPasswords() {
-        passwordRepo.getPasswords().observeForever {
-            passwordResponse.postValue(it)
-        }
+    suspend fun getPasswords(): LiveData<GenericResponse> {
+        return passwordRepo.getPasswords()
     }
 
 
@@ -27,6 +26,11 @@ class PasswordViewModel(private val passwordRepo: PasswordRepo) : ViewModel() {
 
     suspend fun removePassword(id: String): LiveData<GenericResponse> {
         return passwordRepo.removePassword(id)
+    }
+
+    fun toggleBottomSheet(truth: Boolean) {
+        Log.d("gg", "toggled $truth")
+        toggleBottomSheet.postValue(truth)
     }
 
 

@@ -23,6 +23,7 @@ import org.koin.android.ext.android.inject
 class PasswordDetail : BottomSheetDialogFragment() {
 
     private lateinit var passwordObj: Password
+    private lateinit var passwordActivity: PasswordActivity
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +43,7 @@ class PasswordDetail : BottomSheetDialogFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        passwordActivity = activity as PasswordActivity
         passwordObj = arguments?.getSerializable(PASSWORD) as Password
         if (passwordObj != null) {
             password_detail_password.text = passwordObj.code
@@ -58,9 +60,8 @@ class PasswordDetail : BottomSheetDialogFragment() {
             viewModel.removePassword(id).observe(viewLifecycleOwner, Observer {
                 if (it != null) {
                     if (it.status == SUCCESS) {
-                        lifecycleScope.launch {
-                            viewModel.getPasswords()
-                        }
+                        passwordActivity.toggleGetPasswords()
+                        viewModel.toggleBottomSheet(true)
                         dismiss()
                     } else {
                         requireActivity().longToaster(it.message)

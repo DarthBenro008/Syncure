@@ -22,6 +22,7 @@ import org.koin.android.ext.android.inject
 class AddPassword : BottomSheetDialogFragment() {
 
     private val viewModel: PasswordViewModel by inject()
+    private lateinit var passwordActivity: PasswordActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +37,7 @@ class AddPassword : BottomSheetDialogFragment() {
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+        passwordActivity = activity as PasswordActivity
         super.onActivityCreated(savedInstanceState)
         add_password_to_sync.setOnClickListener {
             validate()
@@ -59,6 +61,7 @@ class AddPassword : BottomSheetDialogFragment() {
             viewModel.addPassword(passwordTitle, password).observe(viewLifecycleOwner, Observer {
                 if (it != null) {
                     if (it.status == SUCCESS) {
+                        passwordActivity.toggleGetPasswords()
                         dismiss()
                     } else {
                         requireActivity().longToaster(it.message)

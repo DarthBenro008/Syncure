@@ -71,7 +71,6 @@ class SignIn : ScopedFragment() {
         viewModel.login(username, password).observe(viewLifecycleOwner, Observer {
             if (it != null) {
                 if (it.status == SUCCESS) {
-                    requireContext().shortToaster("Success")
                     val bundle = Bundle()
                     bundle.putString(USERNAME,username.trim())
                     if (navController.currentDestination?.id == R.id.signIn) {
